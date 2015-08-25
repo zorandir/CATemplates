@@ -38,13 +38,13 @@ TemplateDifference[template1_List, template2_List, radius_: 1] :=
   If[!ValidTemplateQ[templateIntersection] || templateIntersection === {},template1,
 	replacementRules = DifferenceReplacementRules[template1, templateIntersection];
 	replacementRulesFinal = Select[replacementRules, FreeQ[#, _Rational] &];(*ATENÇÃO: Aqui remove todas as regras que contenham números racionais*)
-	Print["templateIntersection", templateIntersection, "replacementRules", replacementRules, "replacementRulesFinal", replacementRulesFinal];
+	(*Print["templateIntersection", templateIntersection, "replacementRules", replacementRules, "replacementRulesFinal", replacementRulesFinal];*)
 
 	If[replacementRulesFinal == {}, {},
 	 templateDifferenceP1 = template1 /. replacementRulesFinal;(*Apply*)
 	 exceptionTemplates = ExceptionTemplates[template2, 2, radius];
 	 templateDifferenceP2 = TemplateIntersection[template1, #] & /@ exceptionTemplates;
-	 Print["templateDifferenceP1", templateDifferenceP1, "templateDifferenceP2", templateDifferenceP2];
+	 (*Print["templateDifferenceP1", templateDifferenceP1, "templateDifferenceP2", templateDifferenceP2];*)
 	 templateDifference = Join[templateDifferenceP1, templateDifferenceP2]
    ]
   ]
